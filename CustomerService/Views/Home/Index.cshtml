@@ -1,0 +1,589 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-6"><div id="barChart1"></div></div>
+    <div class="col-md-6" style=" max-height: 200px; overflow-y: scroll;"><div id="barChart4"></div></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6"><div id="barChart2"></div></div>
+    <div class="col-md-6"><div id="barChart3"></div></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div id="gaugeArc"></div>
+    </div>
+    <div class="col-md-6">
+        <div id="gaugeBar"></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div id="gaugeArc2"></div>
+    </div>
+    <div class="col-md-6">
+        <div id="gaugeBar2"></div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        let data = (function () {
+            // generate an array of random data
+            var data = [],
+                time = (new Date()).getTime(),
+                i;
+
+            for (i = -999; i <= 0; i += 1) {
+                data.push([
+                    time + i * 1000,
+                    Math.round(Math.random() * 100)
+                ]);
+            }
+            return data;
+        }())
+
+        var barPlotOptions = {
+            series: {
+                states: {
+                    inactive: {
+                        opacity: 1
+                    }
+                }
+            },
+
+            bar: {
+                stacking: 'normal',
+                groupPadding: 0.1,
+                pointPadding: 0,
+                maxPointWidth: 41,
+                minPointWidth: 8
+            },
+        };
+
+        var barTooltip = {
+            followPointer: false,
+            backgroundColor: "#00000",
+            borderColor: "white",
+            style: {
+                "fontFamily": "Segoe UI",
+                "fontWeight": 400,
+                "color": "#eee",
+                "direction": "ltr"
+            }
+        };
+    </script>
+
+    <script>
+        // barchart 1
+        Highcharts.chart('barChart1', {
+            chart: {
+                height: 200, // TODO: Should be dynamic if <= 2 then ...
+            },
+
+            title: {
+                text: '1. What is your age?',
+                align: 'left'
+            },
+
+            legend: {
+                enabled: false,
+            },
+
+            xAxis: {
+                categories: ['Option 1', 'Option right aligned'],
+                labels: {
+                    align: 'right',
+                }
+            },
+
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    enabled: false,
+                }
+            },
+
+            series: [{
+                name: 'null',
+                data: [100 - 29.9, 100 - 71.5],
+                color: '#F2F3F5',
+                type: 'bar',
+                tooltip: {
+                    enabled: false
+                }
+            }, {
+                data: [29.9, 71.5],
+                color: '#7084E3',
+                type: 'bar',
+                states: {
+                    active: {
+                        opacity: 1
+                    }
+                },
+
+            }],
+
+            tooltip: barTooltip,
+            plotOptions: barPlotOptions,
+            credit: {
+                enabled: false
+            }
+        });
+    </script>
+
+    <script>
+        Highcharts.chart('barChart2', {
+
+            chart: {
+                //height: (9 / 16 * 100) + '%' // 16:9 ratio
+
+            },
+
+            title: {
+                text: '1. What is your age?',
+                align: 'left'
+            },
+
+            legend: {
+                enabled: false,
+            },
+
+            xAxis: {
+                categories: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', 'Option right aligned'],
+                labels: {
+                    align: 'right',
+                }
+
+            },
+
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    enabled: false,
+                }
+            },
+
+            series: [{
+                name: 'null',
+                data: [100 - 29.9, 100 - 71.5, 100 - 65.4, 100 - 44.2, 100 - 65.0, 100 - 77.0, 100 - 98.6],
+                color: '#F2F3F5',
+                type: 'bar',
+                tooltip: {
+                    enabled: false
+                }
+            }, {
+                data: [29.9, 71.5, 65.4, 44.2, 65.0, 77.0, 98.6],
+                color: '#7084E3',
+                type: 'bar',
+                states: {
+                    active: {
+                        opacity: 1
+                    }
+                },
+
+            }],
+
+            tooltip: barTooltip,
+
+            plotOptions: barPlotOptions,
+            credit: {
+                enabled: false
+            }
+        });
+    </script>
+
+    <script>
+        Highcharts.chart('barChart3', {
+
+            chart: {
+                //height: (9 / 16 * 100) + '%' // 16:9 ratio
+
+            },
+
+            title: {
+                text: '1. What is your age?',
+                align: 'left'
+            },
+
+            legend: {
+                enabled: false,
+            },
+
+            xAxis: {
+                categories: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6',
+                    'Option 7', 'Option 8', 'Option 9', 'Option 10', 'Option 11', 'Option 12', 'Option 13', 'Option 14', 'Option right aligned'],
+                labels: {
+                    align: 'right',
+                }
+
+            },
+
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    enabled: false,
+                }
+            },
+
+            series: [{
+                name: 'null',
+                data: [100 - 29.9, 100 - 71.5, 100 - 65.4, 100 - 44.2, 100 - 65.0, 100 - 77.0, 100 - 98.6, 100 - 29.9, 100 - 71.5, 100 - 65.4, 100 - 44.2, 100 - 65.0, 100 - 77.0, 100 - 98.6, 100 - 77],
+                color: '#F2F3F5',
+                type: 'bar',
+                tooltip: {
+                    enabled: false
+                }
+            }, {
+                data: [29.9, 71.5, 65.4, 44.2, 65.0, 77.0, 98.6, 29.9, 71.5, 65.4, 44.2, 65.0, 77.0, 98.6, 77],
+                color: '#7084E3',
+                type: 'bar',
+                states: {
+                    active: {
+                        opacity: 1
+                    }
+                },
+
+            }],
+
+            tooltip: barTooltip,
+            plotOptions: barPlotOptions,
+            credit: {
+                enabled: false
+            }
+        });
+    </script>
+
+    <script>
+        Highcharts.chart('barChart4', {
+
+            chart: {
+                //height: 200,
+            },
+
+            title: {
+                text: '1. What is your age?bb',
+                align: 'left'
+            },
+
+            legend: {
+                enabled: false,
+            },
+
+            xAxis: {
+                categories: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6',
+                    'Option 7', 'Option 8', 'Option 9', 'Option 10', 'Option 11', 'Option 12', 'Option 13', 'Option 14', 'Option right aligned'],
+                labels: {
+                    align: 'right',
+                },
+                scrollbar: {
+                    enabled: true
+                },
+            },
+
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    enabled: false,
+                }
+            },
+
+            series: [{
+                name: 'null',
+                data: [100 - 29.9, 100 - 71.5, 100 - 65.4, 100 - 44.2, 100 - 65.0, 100 - 77.0, 100 - 98.6, 100 - 29.9, 100 - 71.5, 100 - 65.4, 100 - 44.2, 100 - 65.0, 100 - 77.0, 100 - 98.6, 100 - 77],
+                color: '#F2F3F5',
+                type: 'bar',
+                tooltip: {
+                    enabled: false
+                }
+            }, {
+                data: [29.9, 71.5, 65.4, 44.2, 65.0, 77.0, 98.6, 29.9, 71.5, 65.4, 44.2, 65.0, 77.0, 98.6, 77],
+                color: '#7084E3',
+                type: 'bar',
+                states: {
+                    active: {
+                        opacity: 1
+                    }
+                },
+
+            }],
+
+            tooltip: barTooltip,
+            plotOptions: barPlotOptions,
+            credit: {
+                enabled: false
+            }
+        });
+    </script>
+
+    <script>
+
+        Highcharts.chart('gaugeArc', {
+            chart: {
+                type: 'gauge',
+                title: {
+                    text: 'SolidGuage with DIAL'
+                },
+                plotBackgroundImage: null,
+                height: 300
+            },
+            title: {
+                text: ''
+            },
+            pane: [{
+                startAngle: -90,
+                endAngle: 90,
+                background: null,
+                //center: ['50%', '100%'],
+                //size: 300
+            }],
+
+            yAxis: [{
+                min: 0,
+                max: 90,
+                minorTickLength: 0,
+                tickLength: 0,
+                tickWidth: 0,
+                labels: {
+                    enabled: false
+                },
+                title: {
+                    text: '<div class="gaugeFooter">46% Rate</div>',
+                    useHTML: true,
+                    y: 80
+                },
+                plotBands: [{
+                    from: 0,
+                    to: 50,
+                    color: '#107C10',
+                    innerRadius: '100%',
+                    outerRadius: '50%'
+                }, {
+                    from: 50,
+                    to: 90,
+                    color: 'white',
+                    innerRadius: '100%',
+                    outerRadius: '50%'
+                }],
+                pane: 0,
+
+            }],
+
+            plotOptions: {
+                gauge: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    dial: {
+                        radius: '100%',
+                        backgroundColor: 'black',
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        baseWidth: 10,
+                        topWidth: 1,
+                        baseLength: '0%', // of radius
+                        rearLength: '0%',
+                    }
+                }
+            },
+            series: [{
+                data: [50],
+                yAxis: 0
+            }]
+
+        });
+
+        Highcharts.chart('gaugeBar', {
+            chart: {
+                type: 'bar',
+                height: 200
+            },
+            title: {
+                text: 'Overal NPS results',
+                align: 'left'
+            },
+            xAxis: {
+                categories: ['Math'],
+                labels: {
+                    enabled: false
+                }
+
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    enabled: false
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                },
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                }
+            },
+
+            series: [{
+                name: 'Promoters(9-10)',
+                data: [70],
+                color: "#107C10"
+            }, {
+                name: 'Passives(7-8)',
+                data: [16],
+                color: "#EF5F20",
+            },
+            {
+                name: 'Detractors(0-6)',
+                data: [24],
+                color: "#D13438",
+            }]
+        });
+
+    </script>
+
+    <script>
+
+        Highcharts.chart('gaugeArc2', {
+            chart: {
+                type: 'gauge',
+                title: {
+                    text: 'SolidGuage with DIAL'
+                },
+                plotBackgroundImage: null,
+                height: 300
+            },
+            title: {
+                text: ''
+            },
+            pane: [{
+                startAngle: -90,
+                endAngle: 90,
+                background: null,
+                //center: ['50%', '100%'],
+                //size: 300
+            }],
+
+            yAxis: [{
+                min: 0,
+                max: 90,
+                minorTickLength: 0,
+                tickLength: 0,
+                tickWidth: 0,
+                labels: {
+                    enabled: false
+                },
+                title: {
+                    text: '<div class="gaugeFooter">46% Rate</div>',
+                    useHTML: true,
+                    y: 80
+                },
+                plotBands: [{
+                    from: 0,
+                    to: 20,
+                    color: '#BA141A',
+                    innerRadius: '100%',
+                    outerRadius: '50%'
+                }, {
+                    from: 20,
+                    to: 90,
+                    color: 'white',
+                    innerRadius: '100%',
+                    outerRadius: '50%'
+                }],
+                pane: 0,
+
+            }],
+
+            plotOptions: {
+                gauge: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    dial: {
+                        radius: '100%',
+                        backgroundColor: 'black',
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        baseWidth: 10,
+                        topWidth: 1,
+                        baseLength: '0%', // of radius
+                        rearLength: '0%',
+                    }
+                }
+            },
+            series: [{
+                data: [20],
+                yAxis: 0
+            }]
+
+        });
+
+        Highcharts.chart('gaugeBar2', {
+            chart: {
+                type: 'bar',
+                height: 200
+            },
+            title: {
+                text: 'Overal NPS results',
+                align: 'left'
+            },
+            xAxis: {
+                categories: ['Math'],
+                labels: {
+                    enabled: false
+                }
+
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    enabled: false
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                },
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                }
+            },
+
+            series: [{
+                name: 'Promoters(9-10)',
+                data: [24],
+                color: "#107C10"
+            }, {
+                name: 'Passives(7-8)',
+                data: [16],
+                color: "#EF5F20",
+            },
+            {
+                name: 'Detractors(0-6)',
+                data: [70],
+                color: "#D13438",
+            }]
+        });
+
+    </script>
+
+}
