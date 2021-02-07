@@ -95,7 +95,7 @@
             </div>
             <div class="highchart-main-section">
                 <div class="highchart-right-part">
-                    <div style=" max-height: 200px; overflow-y: scroll;">
+                    <div style="overflow-y: scroll; max-height: 500px;">
                         <div id="barChart4"></div>
                     </div>
                 </div>
@@ -195,7 +195,8 @@
                 groupPadding: 0.1,
                 pointPadding: 0,
                 maxPointWidth: 41,
-                minPointWidth: 8
+                //minPointWidth: 8,
+                minPointLength: 30,
             },
         };
 
@@ -288,17 +289,31 @@
         };
 
         function createBarChart(obj) {
-            console.log(obj);
-            let chartMaxHeight = 400;
-            let chartHeightRatio = 80;
+            // TODO: move to constants file
+            // Below code is to set bar height and chart height dynamiclly
+            // The reason not to use built-in minPointHeight is that chart.height, bar height scale
+            // and chart.series.minPointHeight cannot take effect together.
+            const barMinHeight = 8;
+            const barMaxHeight = 40;
+            const chartMaxHeight = 400;
+            const barNumberThreshold = 15;
 
-            var height = obj.categories.length * chartHeightRatio;
-            height = height >= chartMaxHeight ? chartMaxHeight : height;
+            // if categories under threshold, the chart height and bar height will be dynamically scale up and down.
+            // after threshold, we set the bar height to min height, and chart height accordingly.
+
+            var height = 0;
+            if (obj.categories.length > barNumberThreshold) {
+                barPlotOptions.series.pointWidth = barMinHeight;
+                height = obj.categories.length * barMinHeight * 2;
+            } else {
+                height = obj.categories.length * barMaxHeight * 2;
+                height = height >= chartMaxHeight ? chartMaxHeight : height;
+            }
 
             Highcharts.chart(obj.container, {
                 chart: {
                     type: 'bar',
-                    height: height
+                    height: height,
                 },
 
                 title: {
@@ -314,7 +329,7 @@
                     labels: {
                         align: 'right',
                     },
-                    lineWidth: 0
+                    lineWidth: 0,
                 },
 
                 yAxis: {
@@ -327,6 +342,7 @@
                         format: '{value}%'
                     },
                     gridLineDashStyle: 'ShortDash',
+
                 },
 
                 series: [{
@@ -343,6 +359,9 @@
                 plotOptions: barPlotOptions,
                 credits: {
                     enabled: false
+                },
+                scrollbar: {
+                    enabled: true
                 }
             });
         }
@@ -432,17 +451,23 @@
 
                 yAxis: [{
                     min: 0,
-                    max: 90,
+                    max: 100,
                     minorTickLength: 0,
                     tickLength: 0,
                     tickWidth: 0,
                     labels: {
-                        enabled: false
+                        enabled: true,
+                        y: 20,
+                        formatter: function () {
+                            if (this.isLast || this.isFirst) {
+                                return this.value
+                            }
+                        }
                     },
                     title: {
                         text: '<div class="gaugeFooter" style="text-align: center;"><h3>' + obj.y + '</h3><div>Avg NPS score</div></div>',
                         useHTML: true,
-                        y: 80
+                        y: 70 // offset of the text
                     },
                     plotBands: [{
                         from: 0,
@@ -452,7 +477,7 @@
                         outerRadius: '50%'
                     }, {
                         from: obj.y,
-                        to: 90,
+                        to: 100,
                         color: '#F2F3F5',
                         innerRadius: '100%',
                         outerRadius: '50%'
@@ -575,7 +600,7 @@
         barObj.container = 'barChart2';
         barObj.data = Array.from({ length: 7 }, () => Math.floor(Math.random() * 100));
         barObj.dataForBackground = Array(barObj.data.length).fill(100);
-        barObj.categories = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', 'Option right aligned'];
+        barObj.categories = ['Option 1', 'A Option 2', 'C Option 3', 'B Option 4', 'Option 5', 'Option 6', 'Option right aligned'];
         createBarChart(barObj);
     </script>
 
@@ -590,10 +615,10 @@
 
     <script>
         barObj.container = 'barChart4';
-        barObj.data = Array.from({ length: 15 }, () => Math.floor(Math.random() * 100));
+        barObj.data = Array.from({ length: 35 }, () => Math.floor(Math.random() * 100));
         barObj.dataForBackground = Array(barObj.data.length).fill(100);
-        barObj.categories = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6',
-            'Option 7', 'Option 8', 'Option 9', 'Option 10', 'Option 11', 'Option 12', 'Option 13', 'Option 14', 'Option right aligned'];
+        barObj.categories = Array.from({ length: 35 }, (v, i) => 'Option ' + i);
+        barObj.height = 900;
         createBarChart(barObj);
     </script>
 
