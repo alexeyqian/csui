@@ -23,6 +23,34 @@ namespace CustomerService.Controllers
             return View();
         }
 
+        public IActionResult Choice()
+        {
+            return View();
+        }
+        public IActionResult Rating()
+        {
+            return View();
+        }
+        public IActionResult NPS()
+        {
+            return View();
+        }
+
+        public IActionResult TextChart()
+        {
+            return View();
+        }
+
+        public IActionResult UploadChart()
+        {
+            return View();
+        }
+
+        public IActionResult ScaleChoices()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

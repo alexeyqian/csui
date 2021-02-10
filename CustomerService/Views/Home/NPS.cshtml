@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "NPS Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+       
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Gauge Example One?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div class="row">
+                        <div id="gaugeArc"></div>
+                        <div id="gaugeBar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Gauge Example Two?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div class="row">
+                        <div id="gaugeArc2"></div>
+                        <div id="gaugeBar2"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+        
+    <script>
+        gaugeArcObj.container = 'gaugeArc';
+        gaugeArcObj.y = -33;
+        createGaugeArc(gaugeArcObj);
+
+        //gaugeBarObj.container = 'gaugeBar';
+       // gaugeBarObj.data = [60, 16, 24];
+        //createGaugeBar(gaugeBarObj);
+    </script>
+
+    <script>
+
+        gaugeArcObj.container = 'gaugeArc2';
+        gaugeArcObj.y = 50;
+        createGaugeArc(gaugeArcObj);
+
+        //gaugeBarObj.container = 'gaugeBar2';
+        //gaugeBarObj.data = [24, 16, 60];
+        //createGaugeBar(gaugeBarObj);
+
+    </script>
+
+}

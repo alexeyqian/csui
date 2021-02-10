@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Rating Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Rating Example Number
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="columnChartNumber"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Rating Example Star
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="columnChartStar"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Rating Example Smiley
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="columnChartSmiley"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+        columnObj.container = 'columnChartStar';
+        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
+        columnObj.categories = ['Very Happy', 'Happy', 'Neutral', 'Unhappy', 'Disappointed'];
+        columnObj.subType = 'star';
+        createRatingChart(columnObj);
+    </script>
+
+    <script>
+        columnObj.container = 'columnChartNumber';
+        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
+        columnObj.categories = ['1', '2', '3', '4', '5'];
+        columnObj.subType = 'number';
+        createRatingChart(columnObj);
+    </script>
+
+    <script>
+        columnObj.container = 'columnChartSmiley';
+        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
+        columnObj.categories = ['1', '2', '3', '4', '5'];
+        columnObj.subType = 'smiley';
+        createRatingChart(columnObj);
+    </script>
+
+}
