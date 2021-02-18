@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Special Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Choices for Very Long Text Should Wrap and Right Aligned?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="barChartLongText"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+  
+    <script>
+        barObj.container = 'barChartLongText';
+        barObj.data = Array.from({ length: 6 }, () => Math.floor(Math.random() * 100));
+        barObj.dataForBackground = Array(barObj.data.length).fill(100);
+        barObj.categories = ['Option 1', 'A Option', 'C Option', 'B Option', 'Option 5', 'Option very very very very very very very very very long text', 'Option right aligned'];
+        createChoiceChart(barObj);
+    </script>
+
+}

@@ -130,6 +130,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UploadChart">Upload</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Special">Special</a>
+                        </li>
 
                     </ul>
                 </div>
@@ -419,7 +422,7 @@
                     title: {
                         text: '<div class="gaugeFooter" style="text-align: center;"><h3>' + obj.y + '</h3><div>Avg NPS score</div></div>',
                         useHTML: true,
-                        y: 70 // offset of the text
+                        y: 80 // offset of the text
                     },
                     plotBands: [{
                         from: -100,
@@ -530,7 +533,12 @@
                 legend: {
                     symbolHeight: 12,
                     symbolWidth: 12,
-                    symbolRadius: 0
+                    symbolRadius: 0,
+                    
+                    align: 'left', // NEW                    
+                    itemStyle: {
+                        "color": "#605e5c"
+                    }
                 },
                 plotOptions: {
                     series: {
@@ -617,7 +625,17 @@
                     enabled: true,
                     reversed: true,
                     align: 'center',
-                    verticalAlign: 'top'
+                    verticalAlign: 'top',
+                    labelFormatter: function () { // change lable color based on category
+                        if (this.name === "Very easy to complete")
+                            return '<span style="color:#80AFED;">' + this.name + '</span>';
+                        else if (this.name === "Neutral")
+                            return '<span style="color:#4668C5;">' + this.name + '</span>';
+                        else if (this.name === "Unable to complete")
+                            return '<span style="color:#002050;">' + this.name + '</span>';
+                        else
+                            return this.name;
+                    }
                 },
 
                 xAxis: {

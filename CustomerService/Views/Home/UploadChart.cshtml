@@ -2,6 +2,33 @@
     ViewData["Title"] = "Text Page";
 }
 
+<style>
+    .upload-chart-container{
+
+    }
+
+    .upload-chart-table {
+        margin: 10px 0px;
+    }
+
+    upload-chart-table, th {
+        padding: 10px 20px;
+        border-bottom: solid 1px #f3f2f1;
+    }
+
+    .upload-chart-table, td {
+        border-bottom: solid 1px #f3f2f1;
+        padding: 10px 20px;
+        color: #605e5c;
+    }
+
+    .file-name-text{
+        color: #323130;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+</style>
 <div class="row">
     <div class="col-md-12">
        
@@ -11,11 +38,11 @@
             </div>
             <div class="highchart-main-section">
                 <div class="highchart-right-part-x">
-                    <div>
-                        <table>
+                    <div class="upload-chart-container">
+                        <table class="upload-chart-table">
                             <thead>
                                 <tr>
-                                    <th>ICON</th>
+                                    <th><img src="~/img/file.png" /></th>
                                     <th>File</th>
                                     <th>Respondent</th>
                                     <th>Size</th>
@@ -24,34 +51,57 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td></td>
-                                    <td>Cocoa Dream Recipe</td>
+                                    <td><img src="~/img/excel.png" /></td>
+                                    <td class="file-name-text">Cocoa Dream Recipe</td>
                                     <td>Kate Wilson</td>
                                     <td>100MB</td>
                                     <td>Just now</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td>SCF_Recipe123</td>
+                                    <td><img src="~/img/excel.png" /></td>
+                                    <td class="file-name-text">SCF_Recipe123</td>
                                     <td>Thomas cook</td>
                                     <td>20MB</td>
                                     <td>3h ago</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td>Super Chocolate Craze</td>
+                                    <td><img src="~/img/excel.png" /></td>
+                                    <td class="file-name-text">Super Chocolate Craze</td>
                                     <td>Laurie chen</td>
                                     <td>40MB</td>
                                     <td>Jul 6</td>
                                 </tr>
-                            </tbody>
-                            @*<tfoot>
                                 <tr>
-                                    <td>Sum</td>
-                                    <td>$180</td>
+                                    <td><img src="~/img/excel.png" /></td>
+                                    <td class="file-name-text">Chocolate Flavor Contest</td>
+                                    <td>Laurie chen</td>
+                                    <td>40MB</td>
+                                    <td>Jul 6</td>
                                 </tr>
-                            </tfoot>*@
+                                <tr>
+                                    <td><img src="~/img/excel.png" /></td>
+                                    <td class="file-name-text">FlavorEntry123</td>
+                                    <td>Laurie chen</td>
+                                    <td>40MB</td>
+                                    <td>Jul 6</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="~/img/word.png" /></td>
+                                    <td class="file-name-text">FloaverEntry456</td>
+                                    <td>Laurie chen</td>
+                                    <td>40MB</td>
+                                    <td>Jul 6</td>
+                                </tr>
+                                <tr>
+                                    <td><img src="~/img/word.png" /></td>
+                                    <td class="file-name-text">SF_entry_chocolate</td>
+                                    <td>Laurie chen</td>
+                                    <td>40MB</td>
+                                    <td>Jul 6</td>
+                                </tr>
+                            </tbody>                            
                         </table>
+                        <div class="text-response-footer"><a href="#">See all responses</a></div>
                     </div>
                 </div>
             </div>

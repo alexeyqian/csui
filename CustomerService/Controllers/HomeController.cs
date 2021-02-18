@@ -51,6 +51,11 @@ namespace CustomerService.Controllers
             return View();
         }
 
+        public IActionResult Special()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

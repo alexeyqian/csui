@@ -5,7 +5,10 @@
 <style>
     .gauge-container{
         display: flex;
-        align-items:center;
+        align-items:stretch;
+    }
+    .gauge-arc{
+        margin-right: 30px;
     }
 </style>
 <div class="row">
@@ -18,7 +21,7 @@
             <div class="highchart-main-section">
                 <div class="highchart-right-part">
                     <div class="gauge-container">
-                        <div id="gaugeArc"></div>
+                        <div id="gaugeArc" class="gauge-arc"></div>
                         <div id="gaugeBar"></div>
                     </div>
                 </div>
