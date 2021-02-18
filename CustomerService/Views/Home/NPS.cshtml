@@ -3,27 +3,22 @@
 }
 
 <style>
-    .gauge-container{
-        display: flex;
-        align-items:stretch;
-    }
-    .gauge-arc{
-        margin-right: 30px;
-    }
+
 </style>
+
 <div class="row">
     <div class="col-md-12">
-       
+
         <div class="highchart-question-container">
             <div class="highchart-question-title">
                 1. Gauge Example One?
             </div>
             <div class="highchart-main-section">
                 <div class="highchart-right-part">
-                    <div class="gauge-container">
-                        <div id="gaugeArc" class="gauge-arc"></div>
-                        <div id="gaugeBar"></div>
-                    </div>
+                    <div id="gaugeArc" class="gauge-arc"></div>
+                </div>
+                <div class="highchart-left-part">
+                    <div id="gaugeBar"></div>
                 </div>
             </div>
         </div>
@@ -34,11 +29,10 @@
             </div>
             <div class="highchart-main-section">
                 <div class="highchart-right-part">
-                    <div class="gauge-container">
-                        <div id="gaugeArc2"></div>
-                        <div id="gaugeBar2"></div>
-
-                    </div>
+                    <div id="gaugeArc2"></div>
+                </div>
+                <div class="highchart-left-part">
+                    <div id="gaugeBar2"></div>
                 </div>
             </div>
         </div>
@@ -48,14 +42,14 @@
 
 
 @section Scripts{
-        
+
     <script>
         gaugeArcObj.container = 'gaugeArc';
         gaugeArcObj.y = -33;
         createGaugeArc(gaugeArcObj);
 
         gaugeBarObj.container = 'gaugeBar';
-        gaugeBarObj.data = [60, 16, 24];
+        gaugeBarObj.data = [60.666666, 16.55555, 24.4444];
         createGaugeBar(gaugeBarObj);
     </script>
 
