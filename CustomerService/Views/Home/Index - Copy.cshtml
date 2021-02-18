@@ -1,0 +1,190 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Rating Example Star
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="columnChartStar"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Choices Example One?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="barChart1"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Choices Example Two?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="barChart2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Choices Example Three?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="barChart3"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Choices Example Four?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="barChart4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Choices Example Five?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="barChart5"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Choices Example Six?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="barChart6"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Rating Example Number
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="columnChartNumber"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Rating Example Smiley
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="columnChartSmiley"></div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+</div>
+
+
+@section Scripts{
+  
+    <script>
+        barObj.container = 'barChart2';
+        barObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        barObj.dataForBackground = Array(barObj.data.length).fill(100);
+        barObj.categories = ['Option 1', 'A Option 2', 'C Option 3', 'B Option 4', 'Option 5', 'Option 6 very very very very very very very very very long text', 'Option right aligned'];
+        createChoiceChart(barObj);
+    </script>
+
+    <script>
+        barObj.container = 'barChart3';
+        barObj.data = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
+        barObj.dataForBackground = Array(barObj.data.length).fill(100);
+        barObj.categories = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6',
+            'Option 7', 'Option 8', 'Option 9', 'Option 10', 'Option 11', 'Option 12', 'Option 6 very very very very very very very very very long text', 'Option 14', 'Option right aligned'];
+        createChoiceChart(barObj);
+    </script>
+
+    <script>
+        barObj.container = 'barChart4';
+        barObj.data = Array.from({ length: 15 }, () => Math.floor(Math.random() * 100));
+        barObj.dataForBackground = Array(barObj.data.length).fill(100);
+        barObj.categories = Array.from({ length: 35 }, (v, i) => 'Option ' + i);
+        barObj.height = 900;
+        createChoiceChart(barObj);
+    </script>
+
+    <script>
+        barObj.container = 'barChart5';
+        barObj.data = Array.from({ length: 20 }, () => Math.floor(Math.random() * 100));
+        barObj.dataForBackground = Array(barObj.data.length).fill(100);
+        barObj.categories = Array.from({ length: 35 }, (v, i) => 'Option ' + i);
+        barObj.height = 900;
+        createChoiceChart(barObj);
+    </script>
+
+    <script>
+        barObj.container = 'barChart6';
+        barObj.data = Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
+        barObj.dataForBackground = Array(barObj.data.length).fill(100);
+        barObj.categories = Array.from({ length: 35 }, (v, i) => 'Option ' + i);
+        barObj.height = 900;
+        createChoiceChart(barObj);
+    </script>
+
+    <script>
+        columnObj.container = 'columnChartStar';
+        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
+        columnObj.categories = ['Very Happy', 'Happy', 'Neutral', 'Unhappy', 'Disappointed'];
+        columnObj.subType = 'star';
+        createRatingChart(columnObj);
+    </script>
+
+    <script>
+        columnObj.container = 'columnChartNumber';
+        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
+        columnObj.categories = ['1', '2', '3', '4', '5'];
+        columnObj.subType = 'number';
+        createRatingChart(columnObj);
+    </script>
+
+    <script>
+        columnObj.container = 'columnChartSmiley';
+        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
+        columnObj.categories = ['1', '2', '3', '4', '5'];
+        columnObj.subType = 'smiley';
+        createRatingChart(columnObj);
+    </script>
+
+  
+
+}

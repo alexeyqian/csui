@@ -2,6 +2,12 @@
     ViewData["Title"] = "NPS Page";
 }
 
+<style>
+    .gauge-container{
+        display: flex;
+        align-items:center;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
        
@@ -11,7 +17,7 @@
             </div>
             <div class="highchart-main-section">
                 <div class="highchart-right-part">
-                    <div class="row">
+                    <div class="gauge-container">
                         <div id="gaugeArc"></div>
                         <div id="gaugeBar"></div>
                     </div>
@@ -25,7 +31,7 @@
             </div>
             <div class="highchart-main-section">
                 <div class="highchart-right-part">
-                    <div class="row">
+                    <div class="gauge-container">
                         <div id="gaugeArc2"></div>
                         <div id="gaugeBar2"></div>
 
@@ -45,9 +51,9 @@
         gaugeArcObj.y = -33;
         createGaugeArc(gaugeArcObj);
 
-        //gaugeBarObj.container = 'gaugeBar';
-       // gaugeBarObj.data = [60, 16, 24];
-        //createGaugeBar(gaugeBarObj);
+        gaugeBarObj.container = 'gaugeBar';
+        gaugeBarObj.data = [60, 16, 24];
+        createGaugeBar(gaugeBarObj);
     </script>
 
     <script>
@@ -56,9 +62,9 @@
         gaugeArcObj.y = 50;
         createGaugeArc(gaugeArcObj);
 
-        //gaugeBarObj.container = 'gaugeBar2';
-        //gaugeBarObj.data = [24, 16, 60];
-        //createGaugeBar(gaugeBarObj);
+        gaugeBarObj.container = 'gaugeBar2';
+        gaugeBarObj.data = [24, 16, 60];
+        createGaugeBar(gaugeBarObj);
 
     </script>
 

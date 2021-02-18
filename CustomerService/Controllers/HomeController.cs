@@ -46,7 +46,7 @@ namespace CustomerService.Controllers
             return View();
         }
 
-        public IActionResult ScaleChoices()
+        public IActionResult Likert()
         {
             return View();
         }

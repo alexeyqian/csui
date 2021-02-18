@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Likert Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="highchart-question-container">
+            <div class="highchart-question-title">
+                1. Likert Example One?
+            </div>
+            <div class="highchart-main-section">
+                <div class="highchart-right-part">
+                    <div id="likertChart1"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script>
+
+        let obj = {};
+        obj.container = 'likertChart1';
+        obj.categories = ['Logging into your account', 'Selecting your document', 'Finding an available doc', 'Having your appiontpint', 'Contacting customer support'];
+        obj.data = Array.from({ length: obj.categories.length }, () => Math.floor(Math.random() * 100));
+        obj.data2 = Array.from({ length: obj.categories.length }, () => Math.floor(Math.random() * 100));
+        obj.data3 = Array.from({ length: obj.categories.length }, () => 0);
+        for (let i = 0; i < obj.categories.length; i++) {
+            obj.data3[i] = 100 - obj.data[i] - obj.data2[i];
+        }
+        createLikertChart(obj);
+
+    </script>
+
+}

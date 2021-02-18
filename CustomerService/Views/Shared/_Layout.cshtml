@@ -102,7 +102,6 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container">
-                <i class="bi bi-bar-chart-fill"></i>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Customer Voice</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -123,11 +122,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="NPS">NPS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ScaleChoices">Scale Choices</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Likert">Likert</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="TextChart">Text</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="UploadChart">Upload</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -384,8 +387,8 @@
                         text: ''
                     },
                     plotBackgroundImage: null,
-                    height: 400,
-                    width: 400
+                    height: 300,
+                    width: 300
                 },
                 title: {
                     text: ''
@@ -485,7 +488,8 @@
             Highcharts.chart(obj.container, {
                 chart: {
                     type: 'bar',
-                    height: 200
+                    height: 200,
+                    width: 500
                 },
                 title: {
                     text: 'Overal NPS results',
@@ -565,31 +569,44 @@
         }
 
         function createLikertChart(obj) {
-            // TODO: move to constants file
+            // Dynamic height logic
             // Below code is to set bar height and chart height dynamiclly
             // The reason not to use built-in minPointHeight is that chart.height, bar height scale
             // and chart.series.minPointHeight cannot take effect together.
+            const chartMaxHeight = 465;
             const barMinHeight = 8;
             const barMaxHeight = 40;
-            const chartMaxHeight = 400;
-            const barNumberThreshold = 15;
+            const barNumberThreshold = 30;
 
-            // if categories under threshold, the chart height and bar height will be dynamically scale up and down.
-            // after threshold, we set the bar height to min height, and chart height accordingly.
+            function getChartHeight() {
+                let ratio = 1.5;
 
-            var height = 0;
-            if (obj.categories.length > barNumberThreshold) {
-                barPlotOptions.series.pointWidth = barMinHeight;
-                height = obj.categories.length * barMinHeight * 2;
-            } else {
-                height = obj.categories.length * barMaxHeight * 2;
-                height = height >= chartMaxHeight ? chartMaxHeight : height;
+                if (obj.categories.length <= 5)
+                    ratio = 2;
+
+                let height = obj.categories.length * barMaxHeight * ratio;
+                if (height > chartMaxHeight && obj.categories.length <= barNumberThreshold) height = chartMaxHeight;
+                if (height > chartMaxHeight && obj.categories.length > barNumberThreshold) height = obj.categories.length * barMinHeight * ratio;
+
+                return height;
             }
+
+            function getBarHeight() {
+                if (obj.categories.length <= 5) return barMaxHeight;
+                if (obj.categories.length >= barNumberThreshold) return barMinHeight;
+
+                let height = barMaxHeight - obj.categories.length * 2;
+                if (height <= barMinHeight) height = barMinHeight;
+
+                return height;
+            }
+
+            // End of Dynamic height logic
 
             Highcharts.chart(obj.container, {
                 chart: {
                     type: 'bar',
-                    height: height,
+                    height: getChartHeight(),
                 },
 
                 title: {
@@ -639,8 +656,30 @@
                     color: '#002050',
                 }],
 
-                tooltip: barTooltip,
-                plotOptions: barPlotOptions,
+                tooltip: {
+                    followPointer: false,
+                    backgroundColor: "#00000",
+                    borderWidth: 0,
+                    style: {
+                        "fontFamily": "Segoe UI",
+                        "fontWeight": 400,
+                        "color": "#eee",
+                        "direction": "ltr",
+                    },
+                    formatter: function () {
+                        return '<div>' + this.x + ', <span>' + this.y + '%</span></div><br/><div>18 responses</div>';
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        pointWidth: getBarHeight(),
+                     
+                    },
+
+                    bar: {
+                        stacking: 'normal',
+                    },
+                },
                 credits: {
                     enabled: false
                 },
