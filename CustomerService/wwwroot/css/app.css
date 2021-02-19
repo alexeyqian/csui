@@ -28,10 +28,42 @@
 
 .highchart-right-part {
     font-size: 0.9em;
-    /*max-height: 465px;
-            overflow-y: auto;
-    min-width: 480px;*/
+    /*
+        max-height: 465px;
+        overflow-y: auto;
+        min-width: 480px;
+    */
     margin: auto 0px;
+}
+
+.highchart-main-section-nps {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0px;
+}
+
+.highchart-left-part-nps {
+    margin-right: 5rem;
+    margin-top: -50px;
+}
+
+.highchart-right-part-nps {
+}
+
+.nps-value-container {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nps-value {
+    font-size: 30px;
+}
+.nps-text {
+    font-size: 12px;
+    color: #605E5C
 }
 
 .text-response-component {
