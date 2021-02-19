@@ -1,0 +1,86 @@
+﻿
+.highchart-question-container {
+    box-shadow: rgba(0, 0, 0, 0.1) 0.3px 0.9px, rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px;
+    background-color: white;
+    margin: 2rem 0px;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.highchart-question-title {
+    padding: 1rem;   
+    color: rgb(50, 49, 48);
+    border-bottom: 1px solid rgb(237, 235, 233);
+}
+
+.highchart-main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0px;
+}
+
+.highchart-left-part {
+    font-size: 0.9em;
+}
+
+.highchart-right-part {
+    font-size: 0.9em;
+    /*max-height: 465px;
+            overflow-y: auto;
+    min-width: 480px;*/
+    margin: auto 0px;
+}
+
+.text-response-component {
+    font-family: Segoe UI;
+    color: #323130;
+}
+
+.text-response-header {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-bottom: 13px;
+}
+
+.text-response-footer {
+    margin-bottom: 13px;
+}
+
+.text-response-list {
+    list-style-type: none;
+    padding: 0px;
+}
+
+    .text-response-list li:first-of-type {
+        border-top: solid 1px #EDEBE9;
+    }
+
+    .text-response-list li {
+        border-bottom: solid 1px #EDEBE9;
+    }
+
+
+
+.text-response-list-item-text {
+    margin: 13px;
+    margin-bottom: 0px;
+}
+
+.text-response-list-item-time {
+    margin-bottom: 13px;
+    margin-left: 13px;
+    color: #8A8886;
+}
+
+.choice-chart-category-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+    text-align: right;
+}
+
