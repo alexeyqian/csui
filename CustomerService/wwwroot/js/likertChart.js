@@ -3,8 +3,8 @@
     Highcharts.chart(obj.container, {
         chart: {
             type: 'bar',
-            // if lenght > 10, then the top legend will need more vertical space.
-            height: getChartHeight(obj.categories.length, obj.categories.length >= 10? 150 : 80),
+            // if options > 10, then the top legend will need more vertical space.
+            height: getChartHeight(obj.categories.length, obj.options.length >= 10 ? 150 : 80),
         },
 
         title: {
@@ -68,6 +68,9 @@
         legend: {            
             align: 'left',
             verticalAlign: 'top',
+            symbolHeight: 10,
+            symbolWidth: 10,
+            symbolRadius: 0,
             //reversed: true
             /*
             labelFormatter: function () { // change lable color based on category
