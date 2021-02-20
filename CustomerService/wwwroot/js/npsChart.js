@@ -4,7 +4,7 @@
     const positiveThreshold = 0.50;
     const positiveColor = "#107C10";
 
-    Highcharts.chart(obj.container, { 
+    Highcharts.chart(obj.container, {
         chart: {
             type: 'solidgauge',
             height: 200,
@@ -25,7 +25,7 @@
                     borderWidth: 0,
                     useHTML: true,
                     format: '<div class="nps-value-container"><div class="nps-value">{y}</div>' +
-                            '<div class="nps-text">Avg NPS score</div><div>'
+                        '<div class="nps-text">Avg NPS score</div><div>'
                 }
             }
         },
@@ -33,7 +33,7 @@
         yAxis: {
             stops: [
                 [negativeThreshold, negativeColor],
-                [positiveThreshold, positiveColor] 
+                [positiveThreshold, positiveColor]
             ],
             lineWidth: 0,
             tickWidth: 0,
@@ -82,9 +82,15 @@
 }
 
 function createGaugeBar(obj) {
+    const gaugeBarTitle = "Overal NPS results";
+
     const detractorColor = "#D13438";
     const passiveColor = "#EF5F20";
     const promoterColor = "#107C10";
+
+    const detractorName = "Detractors(0-6)";
+    const passiveName = "Passives(7-8)";
+    const promoterName = "Promoters(9-10)";
 
     Highcharts.chart(obj.container, {
 
@@ -98,7 +104,7 @@ function createGaugeBar(obj) {
 
         title: {
             align: 'left',
-            text: 'Overal NPS results',
+            text: gaugeBarTitle,
             margin: 0,
             style: { fontSize: "1rem" }
         },
@@ -143,21 +149,23 @@ function createGaugeBar(obj) {
 
         },
 
-        series: [{
-            name: 'Detractors(0-6)',
-            data: [obj.data[2]],
-            color: detractorColor,
-        },
-        {
-            name: 'Passives(7-8)',
-            data: [obj.data[1]],
-            color: passiveColor,
-        }, {
-            name: 'Promoters(9-10)',
-            data: [obj.data[0]],
-            color: promoterColor
-        },
-        ], credits: {
+        series: [
+            {
+                name: detractorName,
+                data: [obj.data[2]],
+                color: detractorColor,
+            },
+            {
+                name: passiveName,
+                data: [obj.data[1]],
+                color: passiveColor,
+            }, {
+                name: promoterName,
+                data: [obj.data[0]],
+                color: promoterColor
+            }
+        ],
+        credits: {
             enabled: false
         },
 
@@ -177,7 +185,7 @@ function createGaugeBar(obj) {
             symbolHeight: 10,
             symbolWidth: 10,
             symbolRadius: 0,
-            align: 'left', 
+            align: 'left',
             itemStyle: {
                 "color": legendColor
             },
@@ -185,7 +193,7 @@ function createGaugeBar(obj) {
             margin: 10,
             padding: 0
         },
-        
+
     });
 
 }

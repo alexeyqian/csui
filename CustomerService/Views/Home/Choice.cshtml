@@ -27,9 +27,13 @@
 
     <script>
         for (var i = 2; i <= 50; i++) {
-            let obj = {};
+            var obj = {};
             obj.container = 'choiceChart-' + i;
             obj.categories = Array.from({ length: i }, () => 'Option ' + i);
+            for (var j = 0; j < obj.categories.length; j++) { // rename each category
+                obj.categories[j] += '_' + (j + 1);
+            }
+
             obj.data = Array.from({ length: obj.categories.length }, () => Math.floor(Math.random() * 100));
             obj.dataForBackground = Array(obj.data.length).fill(100);
             createChoiceChart(obj);

@@ -8,7 +8,7 @@ function createChoiceChart(obj) {
         },
 
         title: {
-            text: ''
+            text: '' //'CHAR HEIGHT ' + getChartHeight(obj.categories.length) // for debugging
         },
 
         plotOptions: {
@@ -31,11 +31,10 @@ function createChoiceChart(obj) {
                 textOverflow: 'ellipsis',
             },
             // below settings for scroll bar needs highstock.js
-            //min: getChartHeight() > chartMaxHeight ? 0 : null,
-            //max: getChartHeight() > chartMaxHeight ? 10 : null,
-            //scrollbar: {
-            //    enabled: obj.categories.length > categoryThreshold ? true : false,
-            //}
+            max: obj.categories.length <= barNumberThreshold ? obj.categories.length - 1 : barNumberThreshold - 1,
+            scrollbar: {
+                enabled: obj.categories.length > barNumberThreshold ? true : false
+            }
         },
 
         yAxis: {
