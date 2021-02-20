@@ -90,8 +90,8 @@ function createGaugeBar(obj) {
 
         chart: {
             type: 'bar',
-            height: 90,
-            width: 410,
+            height: 80,
+            width: 400,
             spacing: [0, 0, 0, 0],
             margin: [0, 0, 0, 0]
         },
@@ -99,7 +99,8 @@ function createGaugeBar(obj) {
         title: {
             align: 'left',
             text: 'Overal NPS results',
-            margin: 0
+            margin: 0,
+            style: { fontSize: "1rem" }
         },
 
         plotOptions: {
@@ -179,7 +180,10 @@ function createGaugeBar(obj) {
             align: 'left', 
             itemStyle: {
                 "color": legendColor
-            }
+            },
+            itemDistance: 10,
+            margin: 10,
+            padding: 0
         },
         
     });
