@@ -5,16 +5,28 @@
 <div class="row">
     <div class="col-md-12">
 
-        <div class="highchart-question-container">
-            <div class="highchart-question-title">
-                1. Likert Example One?
-            </div>
-            <div class="highchart-main-section">
-                <div class="highchart-right-part">
-                    <div id="likertChart1"></div>
+        @for (int row = 2; row <= 30; row++)
+        {
+            // skip some of unessessary combinations to speed up the process   
+            var skipedRows = new int[] { 3, 4, 6, 7, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 30 };
+            if (skipedRows.Contains(row)) continue;
+            for (int column = 2; column <= 11; column++)
+            {
+                // skip some of unessessary combinations to speed up the process
+                var skippedColumns = new int[] { 3, 4, 6, 7, 9 };
+                if (skippedColumns.Contains(column)) continue;
+                <div class="highchart-question-container">
+                    <div class="highchart-question-title">
+                        1. Likert Example @row - @column?
+                    </div>
+                    <div class="highchart-main-section">
+                        <div class="highchart-right-part">
+                            <div id=@("likertChart-" + row.ToString() + "-" + column.ToString())></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            }
+        }
 
     </div>
 </div>
@@ -23,17 +35,63 @@
 @section Scripts{
 
     <script>
+        const maxStatements = 30;
+        const maxOptions = 11;
 
-        let obj = {};
-        obj.container = 'likertChart1';
-        obj.categories = ['Logging into your account', 'Selecting your document', 'Finding an available doc', 'Having your appiontpint', 'Contacting customer support'];
-        obj.data = Array.from({ length: obj.categories.length }, () => Math.floor(Math.random() * 100));
-        obj.data2 = Array.from({ length: obj.categories.length }, () => Math.floor(Math.random() * 100));
-        obj.data3 = Array.from({ length: obj.categories.length }, () => 0);
-        for (let i = 0; i < obj.categories.length; i++) {
-            obj.data3[i] = 100 - obj.data[i] - obj.data2[i];
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
         }
-        createLikertChart(obj);
+
+        for (let row = 2; row <= maxStatements; row++) {
+            // skip some of unessessary combinations to speed up the process
+            var skipedRows = [3, 4, 6, 7, 9, 11, 12, 13, 14, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 30];
+            if (skipedRows.indexOf(row) >= 0) continue;
+            for (let column = 2; column <= maxOptions; column++) {
+                // skip some of unessessary combinations to speed up the process
+                var skippedColumns = [3, 4, 6, 7, 9];
+                if (skippedColumns.indexOf(column) >= 0) continue;
+
+                var obj = {};
+                obj.container = 'likertChart-' + row + '-' + column;
+                obj.categories = Array.from({ length: row }, () => 'Statement ' + row);
+                // reset categories name
+                for (let j = 0; j < obj.categories.length; j++) { 
+                    obj.categories[j] += '_' + (j + 1);
+                }                
+                obj.options = Array.from({ length: column }, () => 'option ' + column); 
+                // reset options name
+                for (let j = 0; j < obj.options.length; j++)
+                    obj.options[j] += '_' + (j + 1);
+
+                obj.series = Array.from({ length: obj.options.length }, () => { return { name: "", data: [], color: getRandomColor() }; });
+                // reset series name and data
+                for (let m = 0; m < obj.series.length; m++) {                   
+                    obj.series[m] = {
+                        name: obj.options[m],
+                        data: Array.from({ length: obj.categories.length }, () =>  Math.floor(Math.random() * 10) + 1) // make sure no zeros
+                    };
+                }                
+                                
+                // reset last row value of each column, to make the sum of each column equals to 100                
+                for (let m = 0; m < obj.series[0].data.length; m++) { // loop through all columns
+                    var sum = 0;
+                    for (let n = 0; n < obj.series.length; n++) {
+                        sum += obj.series[n].data[m];
+                    }
+
+                    obj.series[obj.series.length - 1].data[m] = 100 - (sum - obj.series[obj.series.length - 1].data[m]);
+                }
+
+                console.log(obj);
+
+                createLikertChart(obj);
+            }
+        }
 
     </script>
 

@@ -4,7 +4,7 @@ function createChoiceChart(obj) {
     Highcharts.chart(obj.container, {
         chart: {
             type: 'bar',
-            height: getChartHeight(obj.categories.length),
+            height: getChartHeight(obj.categories.length, 25),
         },
 
         title: {
@@ -20,16 +20,22 @@ function createChoiceChart(obj) {
             },
         },
 
-        xAxis: {
+        xAxis: {           
             categories: obj.categories,
+            /*
             labels: {
+                style: {
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis"
+                },
+            },*/
+            
+            labels: {                   
                 useHTML: true,
-                format: '<div class="choice-chart-category-label">{value}</div>'
+                format: '<div class="choice-chart-category-label">{value}</div>',
             },
-            lineWidth: 0,
-            style: {
-                textOverflow: 'ellipsis',
-            },
+            
+            lineWidth: 0,           
             // below settings for scroll bar needs highstock.js
             max: obj.categories.length <= barNumberThreshold ? obj.categories.length - 1 : barNumberThreshold - 1,
             scrollbar: {
@@ -60,10 +66,6 @@ function createChoiceChart(obj) {
                 color: barColor,
             }],
 
-        legend: {
-            enabled: false,
-        },
-
         tooltip: {
             followPointer: false,
             backgroundColor: tooltipBackgroundColor,
@@ -76,6 +78,10 @@ function createChoiceChart(obj) {
                     + this.x + ', <span class="tooltip-value">' + this.y
                     + '%</span></div><br/><div class="tooltip-response-count">18 responses</div></div>';
             }
+        },
+
+        legend: {
+            enabled: false,
         },
 
         credits: {

@@ -35,8 +35,9 @@ function getBarHeight(length) {
         return barHeightMap[length % barNumberThreshold];
 }
 
-function getChartHeight(length) {
-    let extraSpace = 25; // extra space for axis lable
+
+// extra space for axis lable, title or legend
+function getChartHeight(length, extraSpace) {
     let barHeight = getBarHeight(length);
     let barGap = barHeight < minBarGap ? minBarGap : barHeight;
     let maxHeight = barNumberThreshold * (barHeight + barGap) + extraSpace;
