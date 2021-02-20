@@ -2,6 +2,14 @@
 function createChoiceChart(obj) {
 
     // Begin of dynamic bar height and chart height
+    /* Choice Chart UX Requirements:
+     * 1. Chart height should be dynamic accroding to bar numbers to avoid too big gap between bars.
+     * 2. Minimum bar height should be 8px
+     * 3. Minimum gap should be 16px
+     * 4. Bar height should be reduced gradually according to increased bar numbers.
+     * 5. Scrollbar shoul be added if too much bars (too hard to achive combined with above reqs)
+     * */
+    
     const ratio = 2;
     const minBarHeight = 8;
     const categoryThreshold = 30;   
@@ -36,8 +44,13 @@ function createChoiceChart(obj) {
             text: ''
         },
 
-        legend: {
-            enabled: false,
+        plotOptions: {
+            series: {
+                pointWidth: getBarHeight(obj.categories.length)
+            },
+            bar: {
+                stacking: 'normal',
+            },
         },
 
         xAxis: {
@@ -50,6 +63,7 @@ function createChoiceChart(obj) {
             style: {
                 textOverflow: 'ellipsis',
             },
+            // below settings for scroll bar needs highstock.js
             //min: getChartHeight() > chartMaxHeight ? 0 : null,
             //max: getChartHeight() > chartMaxHeight ? 10 : null,
             //scrollbar: {
@@ -65,44 +79,37 @@ function createChoiceChart(obj) {
             },
             labels: {
                 format: '{value}%',
-
             },
-            gridLineDashStyle: 'ShortDash'
+            gridLineDashStyle: 'ShortDash',
         },
 
         series: [{
             name: 'null',
             data: obj.dataForBackground,
-            color: '#F2F3F5',
+            color: barBackgroundColor,
             enableMouseTracking: false
-        }, {
-            data: obj.data,
-            color: '#7084E3',
-        }],
+            },
+            {
+                data: obj.data,
+                color: barColor,
+            }],
+
+        legend: {
+            enabled: false,
+        },
 
         tooltip: {
             followPointer: false,
-            backgroundColor: "#00000",
+            backgroundColor: tooltipBackgroundColor,
             borderWidth: 0,
             style: {
-                "fontFamily": "Segoe UI",
-                "fontWeight": 400,
-                "color": "#eee",
-                "direction": "ltr",
+                "color": tooltipColor,
             },
             formatter: function () {
-                return '<div>' + this.x + ', <span>' + this.y + '%</span></div><br/><div>18 responses</div>';
+                return '<div class="tooltip-container"><div>'
+                    + this.x + ', <span class="tooltip-value">' + this.y
+                    + '%</span></div><br/><div class="tooltip-response-count">18 responses</div></div>';
             }
-        },
-
-        plotOptions: {
-            series: {
-                pointWidth: getBarHeight(obj.categories.length) 
-            },
-
-            bar: {
-                stacking: 'normal',
-            },
         },
 
         credits: {

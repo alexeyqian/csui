@@ -43,30 +43,31 @@
 @section Scripts{
 
     <script>
-        columnObj.container = 'columnChartStar';
-        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
-        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
-        columnObj.categories = ['Very Happy', 'Happy', 'Neutral', 'Unhappy', 'Disappointed'];
-        columnObj.subType = 'star';
-        createRatingChart(columnObj);
+        let obj = {};
+        obj.container = 'columnChartStar';
+        obj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        obj.dataForBackground = Array(obj.data.length).fill(100);
+        obj.categories = ['Very Happy', 'Happy', 'Neutral', 'Unhappy', 'Disappointed'];
+        obj.subType = 'star';
+        createRatingChart(obj);
     </script>
 
     <script>
-        columnObj.container = 'columnChartNumber';
-        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
-        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
-        columnObj.categories = ['1', '2', '3', '4', '5'];
-        columnObj.subType = 'number';
-        createRatingChart(columnObj);
+        obj.container = 'columnChartNumber';
+        obj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        obj.dataForBackground = Array(obj.data.length).fill(100);
+        obj.categories = ['1', '2', '3', '4', '5'];
+        obj.subType = 'number';
+        createRatingChart(obj);
     </script>
 
     <script>
-        columnObj.container = 'columnChartSmiley';
-        columnObj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
-        columnObj.dataForBackground = Array(columnObj.data.length).fill(100);
-        columnObj.categories = ['1', '2', '3', '4', '5'];
-        columnObj.subType = 'smiley';
-        createRatingChart(columnObj);
+        obj.container = 'columnChartSmiley';
+        obj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+        obj.dataForBackground = Array(obj.data.length).fill(100);
+        obj.categories = ['1', '2', '3', '4', '5'];
+        obj.subType = 'smiley';
+        createRatingChart(obj);
     </script>
 
 }
