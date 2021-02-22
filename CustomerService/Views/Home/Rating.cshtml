@@ -4,38 +4,48 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="highchart-question-container">
-            <div class="highchart-question-title">
-                1. Rating Example Number
-            </div>
-            <div class="highchart-main-section">
-                <div class="highchart-right-part">
-                    <div id="columnChartNumber"></div>
+        @for (int i = 2; i <= 5; i++)
+        {
+            <div class="highchart-question-container">
+                <div class="highchart-question-title">
+                    1. Rating Smiley - @i
+                </div>
+                <div class="highchart-main-section">
+                    <div class="highchart-right-part">
+                        <div id="ratingSmileyChart-@i"></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
 
-        <div class="highchart-question-container">
-            <div class="highchart-question-title">
-                1. Rating Example Star
-            </div>
-            <div class="highchart-main-section">
-                <div class="highchart-right-part">
-                    <div id="columnChartStar"></div>
+        @for (int i = 2; i <= 10; i++)
+        {
+            <div class="highchart-question-container">
+                <div class="highchart-question-title">
+                    1. Rating Star - @i
                 </div>
-            </div>
-        </div>
+                <div class="highchart-main-section">
+                    <div class="highchart-right-part">
+                        <div id="ratingStarChart-@i"></div>
+                    </div>
+                </div>
+            </div>           
+        }
 
-        <div class="highchart-question-container">
-            <div class="highchart-question-title">
-                1. Rating Example Smiley
-            </div>
-            <div class="highchart-main-section">
-                <div class="highchart-right-part">
-                    <div id="columnChartSmiley"></div>
+        @for (int i = 2; i <= 10; i++)
+        {
+            <div class="highchart-question-container">
+                <div class="highchart-question-title">
+                    1. Rating Number - @i
+                </div>
+                <div class="highchart-main-section">
+                    <div class="highchart-right-part">
+                        <div id="ratingNumberChart-@i"></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
+
     </div>
 </div>
 
@@ -43,31 +53,65 @@
 @section Scripts{
 
     <script>
-        let obj = {};
-        obj.container = 'columnChartStar';
-        obj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
-        obj.dataForBackground = Array(obj.data.length).fill(100);
-        obj.categories = ['Very Happy', 'Happy', 'Neutral', 'Unhappy', 'Disappointed'];
-        obj.subType = 'star';
-        createRatingChart(obj);
+               
+        for (var i = 2; i <= 5; i++) {
+            var obj = {};
+            obj.container = 'ratingSmileyChart-' + i;
+            obj.data = Array.from({ length: i }, () => Math.floor(Math.random() * 100));
+            obj.dataForBackground = Array(obj.data.length).fill(100);
+
+            switch (i) {
+                case 2:
+                    obj.categories = ["Very Happy", "Very Unhappy"];
+                    break;
+                case 3:
+                    obj.categories = ["Very Happy", "Neutral",  "Very Unappy"];
+                    break;
+                case 4:
+                    obj.categories = ['Very Happy', 'Happy', 'Unhappy', 'Very Unhappy'];
+                    break;
+                case 5:
+                    obj.categories = ['Very Happy', 'Happy', 'Neutral', 'Unhappy', 'Very Unhappy'];
+                    break;
+                default:
+                    break;
+            }
+
+            obj.subType = 'smiley';
+            createRatingChart(obj);
+        }       
     </script>
 
     <script>
-        obj.container = 'columnChartNumber';
-        obj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
-        obj.dataForBackground = Array(obj.data.length).fill(100);
-        obj.categories = ['1', '2', '3', '4', '5'];
-        obj.subType = 'number';
-        createRatingChart(obj);
+        for (var i = 2; i <= 10; i++) {
+            var obj = {};
+            obj.container = 'ratingStarChart-' + i;
+            obj.data = Array.from({ length: i }, () => Math.floor(Math.random() * 100));
+            obj.dataForBackground = Array(obj.data.length).fill(100);
+
+            obj.categories = [];
+            for (var j = 1; j <= i; j++)
+                obj.categories.push(j);
+            
+            obj.subType = 'star';
+            createRatingChart(obj);
+        }        
     </script>
 
     <script>
-        obj.container = 'columnChartSmiley';
-        obj.data = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
-        obj.dataForBackground = Array(obj.data.length).fill(100);
-        obj.categories = ['1', '2', '3', '4', '5'];
-        obj.subType = 'smiley';
-        createRatingChart(obj);
+        for (var i = 2; i <= 10; i++) {
+            var obj = {};
+            obj.container = 'ratingNumberChart-' + i;
+            obj.data = Array.from({ length: i }, () => Math.floor(Math.random() * 100));
+            obj.dataForBackground = Array(obj.data.length).fill(100);
+
+            obj.categories = [];
+            for (var j = 1; j <= i; j++)
+                obj.categories.push(j);
+
+            obj.subType = 'number';
+            createRatingChart(obj);
+        }
     </script>
 
 }

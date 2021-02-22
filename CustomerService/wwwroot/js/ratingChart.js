@@ -2,8 +2,8 @@
     Highcharts.chart(obj.container, {
         chart: {
             type: 'column',
-            width: 410, 
-            height: 380
+            width: RatingChartConfig.getChartWidth(obj.categories.length, 50), 
+            //height: 380
         },
 
         title: {
@@ -17,7 +17,7 @@
                         opacity: 1
                     }
                 },
-                pointWidth: 47,
+                pointWidth: RatingChartConfig.getColumnWidth(obj.categories.length)
             },
             column: {
                 stacking: 'normal',

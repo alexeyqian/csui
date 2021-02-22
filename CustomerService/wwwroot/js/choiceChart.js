@@ -4,7 +4,7 @@ function createChoiceChart(obj) {
     Highcharts.chart(obj.container, {
         chart: {
             type: 'bar',
-            height: getChartHeight(obj.categories.length, 25),
+            height: ChoiceChartConfig.getChartHeight(obj.categories.length, 25),
         },
 
         title: {
@@ -13,7 +13,7 @@ function createChoiceChart(obj) {
 
         plotOptions: {
             series: {
-                pointWidth: getBarHeight(obj.categories.length)
+                pointWidth: ChoiceChartConfig.getBarHeight(obj.categories.length)
             },
             bar: {
                 stacking: 'normal',
@@ -37,9 +37,9 @@ function createChoiceChart(obj) {
             
             lineWidth: 0,           
             // below settings for scroll bar needs highstock.js
-            max: obj.categories.length <= barNumberThreshold ? obj.categories.length - 1 : barNumberThreshold - 1,
+            max: obj.categories.length <= ChoiceChartConfig.barNumberThreshold ? obj.categories.length - 1 : ChoiceChartConfig.barNumberThreshold - 1,
             scrollbar: {
-                enabled: obj.categories.length > barNumberThreshold ? true : false
+                enabled: obj.categories.length > ChoiceChartConfig.barNumberThreshold ? true : false
             }
         },
 

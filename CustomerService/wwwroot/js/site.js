@@ -5,45 +5,70 @@ const tooltipColor = '#EEE';
 const tooltipBackgroundColor = 'black';
 const legendColor = "#605E5C";
 
-// Begin of dynamic bar height and chart height
-/* Choice Chart UX Requirements:
- * 1. Chart height should be dynamic accroding to bar numbers to avoid too big gap between bars.
- * 2. Minimum bar height should be 8px
- * 3. Minimum gap should be 16px
- * 4. Bar height should be reduced gradually according to increased bar numbers.
- * 5. Scrollbar shoul be added if too much bars 
- * */
+var ChoiceChartConfig = {    
+    /* Choice Chart UX Requirements:
+     * 1. Chart height should be dynamic accroding to bar numbers to avoid too big gap between bars.
+     * 2. Minimum bar height should be 8px
+     * 3. Minimum gap should be 16px
+     * 4. Bar height should be reduced gradually according to increased bar numbers.
+     * 5. Scrollbar shoul be added if too much bars 
+     * */
 
-const minBarHeight = 8;
-const minBarGap = 16;
-const barNumberThreshold = 20;
-const barHeightMap = [8,
-    /*1 2   3   4   5   6   7   8   9   10  */
-    8, 30, 30, 30, 30, 30, 25, 25, 20, 20,
-    20, 20, 20, 20, 15, 15, 15, 15, 12, 12];
+    minBarHeight: 8,
+    minBarGap: 16,
+    barNumberThreshold: 20,
+    barHeightMap: [8,
+        /*1 2   3   4   5   6   7   8   9   10  */
+        8, 30, 30, 30, 30, 30, 25, 25, 20, 20,
+        20, 20, 20, 20, 15, 15, 15, 15, 12, 12],
 
-/*
-const chartHeightMap = [200,
-    //1  2    3    4    5    6    7    8    9    10   
-    200, 250, 300, 350, 400, 400, 400, 400, 400, 400];
-*/
+    getBarHeight: function (barCount) {
+        if (barCount >= this.barNumberThreshold)
+            return this.minBarHeight;
+        else
+            return this.barHeightMap[barCount % this.barNumberThreshold];
+    },
 
-function getBarHeight(length) {
-    if (length >= barNumberThreshold)
-        return minBarHeight;
-    else
-        return barHeightMap[length % barNumberThreshold];
-}
+    // extra space for axis lable, title or legend
+    getChartHeight: function (barCount, extraSpace) {
+        let barHeight = this.getBarHeight(barCount);
+        let barGap = barHeight < this.minBarGap ? this.minBarGap : barHeight;
+        let maxHeight = this.barNumberThreshold * (barHeight + barGap) + extraSpace;
 
+        let height = barCount * (barHeight + barGap) + extraSpace;
+        return height > maxHeight ? maxHeight : height;
+    },
+};
 
-// extra space for axis lable, title or legend
-function getChartHeight(length, extraSpace) {
-    let barHeight = getBarHeight(length);
-    let barGap = barHeight < minBarGap ? minBarGap : barHeight;
-    let maxHeight = barNumberThreshold * (barHeight + barGap) + extraSpace;
+var RatingChartConfig = {
+    /* Rating Chart UX Requirements:
+     * 1. Column numbers ranging from 2 - 10, chat width should grow accordingly.
+     * 2. Minimum bar width should be 20px
+     * 3. Minimum gap should be 16px
+     * 4. Column width should be reduced gradually according to increased bar numbers.
+     * */
+    minColumnWidth: 8,
+    minColumnGap: 16,
+    countThreshold: 11,
+    columnWidthMap: [8,
+        /*1 2   3   4   5   6   7   8   9   10  11 */
+        8, 30, 30, 30, 30, 30, 25, 25, 20, 20, 20],
 
-    let height = length * (barHeight + barGap) + extraSpace;
-    return height > maxHeight ? maxHeight : height;
+    getColumnWidth: function (columnCount) {
+        if (columnCount >= this.countThreshold)
+            return minColumnWidth;
+        else
+            return this.columnWidthMap[columnCount % this.countThreshold];
+    },
 
-}
-// End of Dynamic height logic
+    // extra space for axis lable, title or legend
+    getChartWidth: function (columnCount, extraSpace) {
+        let columnWidth = this.getColumnWidth(columnCount);
+        let columnGap = columnWidth < this.minColumnWidth ? this.minColumnGap : columnWidth;
+        let maxWidth = this.countThreshold * (columnWidth + columnGap) + extraSpace;
+
+        let width = columnCount * (columnWidth + columnGap) + extraSpace;
+        return width > maxWidth ? maxWidth : width;
+    }
+};
+
