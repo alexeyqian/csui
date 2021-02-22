@@ -4,7 +4,7 @@
         chart: {
             type: 'bar',
             // if options > 10, then the top legend will need more vertical space.
-            height: getChartHeight(obj.categories.length, obj.options.length >= 10 ? 150 : 80),
+            height: ChoiceChartConfig.getChartHeight(obj.categories.length, obj.options.length >= 10 ? 150 : 80),
         },
 
         title: {
@@ -13,7 +13,7 @@
 
         plotOptions: {
             series: {
-                pointWidth: getBarHeight(obj.categories.length)
+                pointWidth: ChoiceChartConfig.getBarHeight(obj.categories.length)
             },
 
             bar: {
@@ -30,9 +30,9 @@
 
             lineWidth: 0,
             // below settings for scroll bar needs highstock.js
-            max: obj.categories.length <= barNumberThreshold ? obj.categories.length - 1 : barNumberThreshold - 1,
+            max: obj.categories.length <= ChoiceChartConfig.barNumberThreshold ? obj.categories.length - 1 : ChoiceChartConfig.barNumberThreshold - 1,
             scrollbar: {
-                enabled: obj.categories.length > barNumberThreshold ? true : false
+                enabled: obj.categories.length > ChoiceChartConfig.barNumberThreshold ? true : false
             }
         },
 
