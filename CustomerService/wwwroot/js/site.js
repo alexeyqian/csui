@@ -5,7 +5,16 @@ const tooltipColor = '#EEE';
 const tooltipBackgroundColor = "rgba(0, 0, 0, 1)";
 const legendColor = "#605E5C";
 
-var ChoiceChartConfig = {    
+var sharedChartConfig = {
+    tooltip: function (x, y, z) {
+        return '<div class="tooltip-container"><div>'
+            + x + ', <span class="tooltip-value">'
+            + y + '%</span></div><br/><div class="tooltip-response-count">'
+            + z + ' responses</div></div>';
+    }
+};
+
+var ChoiceChartConfig = {
     /* Choice Chart UX Requirements:
      * 1. Chart height should be dynamic accroding to bar numbers to avoid too big gap between bars.
      * 2. Minimum bar height should be 8px
@@ -53,6 +62,9 @@ var RatingChartConfig = {
     columnWidthMap: [8,
         /*1 2   3   4   5   6   7   8   9   10  11 */
         8, 30, 30, 30, 30, 30, 25, 25, 20, 20, 20],
+    chartWidthMap: [8,
+        /*1 2    3    4    5    6    7    8    9    10   11 */
+        8, 250, 300, 300, 330, 400, 400, 400, 400, 400, 400],
 
     getColumnWidth: function (columnCount) {
         if (columnCount >= this.countThreshold)
@@ -62,13 +74,16 @@ var RatingChartConfig = {
     },
 
     // extra space for axis lable, title or legend
-    getChartWidth: function (columnCount, extraSpace) {
+    getChartWidth: function (columnCount) {
+        return this.chartWidthMap[columnCount % this.countThreshold];
+        /*
         let columnWidth = this.getColumnWidth(columnCount);
         let columnGap = columnWidth < this.minColumnWidth ? this.minColumnGap : columnWidth;
         let maxWidth = this.countThreshold * (columnWidth + columnGap) + extraSpace;
 
         let width = columnCount * (columnWidth + columnGap) + extraSpace;
         return width > maxWidth ? maxWidth : width;
+        */
     }
 };
 

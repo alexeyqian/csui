@@ -183,9 +183,7 @@ function createGaugeBar(obj) {
             style: {
                 "color": tooltipColor,
             },
-            formatter: function () {
-                return '<div>' + this.x + ' <span>' + this.y + '%</span></div><br/><div>18 responses</div>';
-            }
+            formatter: function () { return sharedChartConfig.tooltip(this.x, this.y, 18); } 
         },
 
         legend: {
@@ -197,7 +195,7 @@ function createGaugeBar(obj) {
             margin: 10,
             padding: 0,
             useHTML: true,
-            labelFormat: '<div class="nps-bar-legend-label">{name}</div>'            
+            labelFormat: '<div class="legend-label">{name}</div>'            
         },
 
     });

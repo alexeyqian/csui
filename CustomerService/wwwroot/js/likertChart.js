@@ -1,92 +1,85 @@
-﻿function createLikertChart(obj) {
+﻿var LikertChartConfig = {
+    optionColors: ["#4190FF", "#8D67C2", "#1A9EAD", "#1D2BA7", "#F736AD", "#632F12", "#E86B54",
+        "#6C179A", "#7084E3", "#107C10", "#D13438", "#000000"],
 
-    Highcharts.chart(obj.container, {
-        chart: {
-            type: 'bar',
-            // if options > 10, then the top legend will need more vertical space.
-            height: ChoiceChartConfig.getChartHeight(obj.categories.length, obj.options.length >= 10 ? 150 : 80),
-        },
+    createLikertChart: function(obj) {
 
-        title: {
-            text: ''
-        },
-
-        plotOptions: {
-            series: {
-                pointWidth: ChoiceChartConfig.getBarHeight(obj.categories.length)
+        Highcharts.chart(obj.container, {
+            chart: {
+                type: 'bar',
+                // if options > 10, then the top legend will need more vertical space.
+                height: ChoiceChartConfig.getChartHeight(obj.categories.length, obj.options.length >= 10 ? 150 : 80),
             },
 
-            bar: {
-                stacking: 'normal',
-            },
-        },
-
-        xAxis: {
-            categories: obj.categories,
-            labels: {
-                useHTML: true,
-                format: '<div class="choice-chart-category-label">{value}</div>',
-            },
-
-            lineWidth: 0,
-            // below settings for scroll bar needs highstock.js
-            max: obj.categories.length <= ChoiceChartConfig.barNumberThreshold ? obj.categories.length - 1 : ChoiceChartConfig.barNumberThreshold - 1,
-            scrollbar: {
-                enabled: obj.categories.length > ChoiceChartConfig.barNumberThreshold ? true : false
-            }
-        },
-
-        yAxis: {
-            min: 0,
-            max: 100,
             title: {
-                enabled: false,
+                text: ''
             },
-            labels: {
-                format: '{value}%',
 
+            plotOptions: {
+                series: {
+                    pointWidth: ChoiceChartConfig.getBarHeight(obj.categories.length)
+                },
+
+                bar: {
+                    stacking: 'normal',
+                },
             },
-            gridLineDashStyle: 'ShortDash',
-        },
 
-        series: obj.series,
+            xAxis: {
+                categories: obj.categories,
+                labels: {
+                    useHTML: true,
+                    format: '<div class="xaxis-label">{value}</div>',
+                },
 
-        tooltip: {
-            followPointer: false,
-            backgroundColor: tooltipBackgroundColor,
-            borderWidth: 0,
-            style: {
-                "color": tooltipColor,
+                lineWidth: 0,
+                // below settings for scroll bar needs highstock.js
+                max: obj.categories.length <= ChoiceChartConfig.barNumberThreshold ? obj.categories.length - 1 : ChoiceChartConfig.barNumberThreshold - 1,
+                scrollbar: {
+                    enabled: obj.categories.length > ChoiceChartConfig.barNumberThreshold ? true : false
+                }
             },
-            formatter: function () {
-                return '<div class="tooltip-container"><div>'
-                    + this.x + ', <span class="tooltip-value">' + this.y
-                    + '%</span></div><br/><div class="tooltip-response-count">18 responses</div></div>';
+
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    enabled: false,
+                },
+                labels: {
+                    useHTML: true,
+                    format: '<div class="yaxis-label">{value}%</div>',
+                },
+                gridLineDashStyle: 'ShortDash',
+                reversed: true
+            },
+
+            series: obj.series,
+
+            tooltip: {
+                followPointer: false,
+                backgroundColor: tooltipBackgroundColor,
+                borderWidth: 0,
+                style: {
+                    "color": tooltipColor,
+                },
+                formatter: function () { return sharedChartConfig.tooltip(this.x, this.y, 18);} 
+            },
+
+            legend: {
+                align: 'left',
+                verticalAlign: 'top',
+                symbolHeight: 12,
+                symbolWidth: 12,
+                symbolRadius: 0,
+                useHTML: true,
+                labelFormat: '<div class="legend-label">{name}</div>'            
+            },
+
+            credits: {
+                enabled: false
             }
-        },
+        });
+    }
+};
 
-        legend: {            
-            align: 'left',
-            verticalAlign: 'top',
-            symbolHeight: 10,
-            symbolWidth: 10,
-            symbolRadius: 0,
-            //reversed: true
-            /*
-            labelFormatter: function () { // change lable color based on category
-                if (this.name === "Very easy to complete")
-                    return '<span style="color:#80AFED;">' + this.name + '</span>';
-                else if (this.name === "Neutral")
-                    return '<span style="color:#4668C5;">' + this.name + '</span>';
-                else if (this.name === "Unable to complete")
-                    return '<span style="color:#002050;">' + this.name + '</span>';
-                else
-                    return this.name;
-            }*/
-        },
-               
-        credits: {
-            enabled: false
-        }
-    });
-}

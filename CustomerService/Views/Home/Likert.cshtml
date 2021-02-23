@@ -68,12 +68,13 @@
                 for (let j = 0; j < obj.options.length; j++)
                     obj.options[j] += '_' + (j + 1);
 
-                obj.series = Array.from({ length: obj.options.length }, () => { return { name: "", data: [], color: getRandomColor() }; });
+                obj.series = Array.from({ length: obj.options.length }, (v, i) => { return { name: "", data: [], color: LikertChartConfig.optionColors[i] }; });
                 // reset series name and data
                 for (let m = 0; m < obj.series.length; m++) {                   
                     obj.series[m] = {
                         name: obj.options[m],
-                        data: Array.from({ length: obj.categories.length }, () =>  Math.floor(Math.random() * 10) + 1) // make sure no zeros
+                        data: Array.from({ length: obj.categories.length }, () => Math.floor(Math.random() * 10) + 1), // make sure no zeros
+                        color: LikertChartConfig.optionColors[m]
                     };
                 }                
                                 
@@ -89,7 +90,7 @@
 
                 console.log(obj);
 
-                createLikertChart(obj);
+                LikertChartConfig.createLikertChart(obj);
             }
         }
 

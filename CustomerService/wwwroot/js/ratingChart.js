@@ -2,7 +2,7 @@
     Highcharts.chart(obj.container, {
         chart: {
             type: 'column',
-            width: RatingChartConfig.getChartWidth(obj.categories.length, 50), 
+            width: RatingChartConfig.getChartWidth(obj.categories.length), 
             //height: 380
         },
 
@@ -36,6 +36,8 @@
             labels: {
                 autoRotation: false, // IMPORTANT
                 align: 'center',
+                useHTML: true,
+                format: '<div class="xaxis-label">{value}</div>',
             },
             lineWidth: 0,
         },
@@ -47,7 +49,8 @@
                 enabled: false,
             },
             labels: {
-                format: '{value}%',
+                useHTML: true,
+                format: '<div class="yaxis-label">{value}%</div>',
             },
             gridLineDashStyle: 'ShortDash',
         },
@@ -73,11 +76,7 @@
             style: {
                 "color": tooltipColor,
             },
-            formatter: function () {
-                return '<div class="tooltip-container"><div>'
-                    + this.x + ', <span class="tooltip-value">' + this.y
-                    + '%</span></div><br/><div class="tooltip-response-count">18 responses</div></div>';
-            }
+            formatter: function () { return sharedChartConfig.tooltip(this.x, this.y, 18); } 
         },
        
         credits: {

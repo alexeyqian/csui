@@ -8,7 +8,7 @@ function createChoiceChart(obj) {
         },
 
         title: {
-            text: '' //'CHAR HEIGHT ' + getChartHeight(obj.categories.length) // for debugging
+            text: ''
         },
 
         plotOptions: {
@@ -22,17 +22,9 @@ function createChoiceChart(obj) {
 
         xAxis: {           
             categories: obj.categories,
-            /*
-            labels: {
-                style: {
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis"
-                },
-            },*/
-            
             labels: {                   
                 useHTML: true,
-                format: '<div class="choice-chart-category-label">{value}</div>',
+                format: '<div class="xaxis-label">{value}</div>',
             },
             
             lineWidth: 0,           
@@ -50,7 +42,8 @@ function createChoiceChart(obj) {
                 enabled: false,
             },
             labels: {
-                format: '{value}%',
+                useHTML: true,
+                format: '<div class="yaxis-label">{value}%</div>',
             },
             gridLineDashStyle: 'ShortDash',
         },
@@ -73,11 +66,7 @@ function createChoiceChart(obj) {
             style: {
                 "color": tooltipColor,
             },
-            formatter: function () {
-                return '<div class="tooltip-container"><div>'
-                    + this.x + ', <span class="tooltip-value">' + this.y
-                    + '%</span></div><br/><div class="tooltip-response-count">18 responses</div></div>';
-            }
+            formatter: function () { return sharedChartConfig.tooltip(this.x, this.y, 18); } 
         },
 
         legend: {
