@@ -87,3 +87,8 @@ var RatingChartConfig = {
     }
 };
 
+var LikertChartConfig = {
+    optionColors: ["#4190FF", "#8D67C2", "#1A9EAD", "#1D2BA7", "#F736AD", "#632F12", "#E86B54",
+        "#6C179A", "#7084E3", "#107C10", "#D13438", "#000000"],
+
+};

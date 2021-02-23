@@ -73,9 +73,7 @@
             style: {
                 "color": tooltipColor,
             },
-            formatter: function () {
-                return '<div>Score <span>' + this.y + '</span></div><br/><div>18 responses</div>';
-            }
+            formatter: function () { return sharedChartConfig.tooltip('Score', this.y, 18); } 
         },
 
         credits: {

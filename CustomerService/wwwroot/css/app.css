@@ -9,8 +9,13 @@
 }
 
 .highchart-question-title {
-    padding: 1rem;
-    color: rgb(50, 49, 48);
+    font-family: "Segoe UI";
+    font-size: 14px;
+    line-height: 20px;
+    color: #323130;
+    font-weight: bold;
+    margin: 10px 0px;
+    margin-left: 16px;
     border-bottom: 1px solid rgb(237, 235, 233);
 }
 
@@ -49,7 +54,7 @@
 }
 
 
-/********** Shared ****************/
+/********** SHARED ****************/
 .xaxis-label {
     font-family: "Segoe UI";
     font-size: 14px;
@@ -82,7 +87,7 @@
     font-family: "Segoe UI";
     font-size: 12px;
     line-height: 16px;
-    color: "#FFFFFF";
+    color: #FFFFFF;
 }
 
 .tooltip-value {
@@ -136,7 +141,6 @@
 }
 
 
-
 /********** TEXT RESPONSE ****************/
 .text-response-component {
     font-family: Segoe UI;
@@ -144,13 +148,22 @@
 }
 
 .text-response-header {
-    font-size: 1rem;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    line-height: 20px;
+    color: #323130;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 12px;
 }
 
 .text-response-footer {
-    margin-bottom: 1rem;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    line-height: 20px;
+    color: #2266E3;
+    margin-left: 20px;
+    margin-top: 13px;
+    margin-bottom: 24px;
 }
 
 .text-response-list {
@@ -166,16 +179,21 @@
         border-bottom: solid 1px #EDEBE9;
     }
 
-
-
 .text-response-list-item-text {
-    margin: 1rem;
-    margin-bottom: 0px;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    line-height: 20px;
+    color: #323130;    
+    margin: 13px 0px;
+    margin-left: 20px;
 }
 
 .text-response-list-item-time {
-    margin-bottom: 1rem;
-    margin-left: 1rem;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 13px;
+    margin-left: 20px;
     color: #8A8886;
 }
 
