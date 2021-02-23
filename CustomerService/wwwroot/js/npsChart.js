@@ -24,9 +24,9 @@
                     y: 1,
                     borderWidth: 0,
                     useHTML: true,
-                    format: '<div class="nps-value-container"><div class="nps-value">{y}</div>' +
-                        '<div class="nps-text">Avg NPS score</div><div>'
-                }
+                    format: '<div class="nps-gauge-value-container"><div class="nps-gauge-value">{y}</div>' +
+                        '<div class="nps-gauge-text">Avg NPS score</div><div>'
+                },
             }
         },
 
@@ -34,13 +34,15 @@
             stops: [
                 [negativeThreshold, negativeColor],
                 [positiveThreshold, positiveColor]
-            ],
+            ],            
             lineWidth: 0,
             tickWidth: 0,
             minorTickInterval: 0,
             tickAmount: 2,
-            labels: {
-                y: 16
+            labels: {               
+                y: 16,
+                useHTML: true,
+                format: '<div class="nps-gauge-y-label">{value}</div>' // use format to style the label font, size and color.
             },
             min: -100,
             max: 100,
@@ -59,8 +61,9 @@
                 backgroundColor: '#EDEBE9',
                 innerRadius: '60%',
                 outerRadius: '100%',
-                shape: 'arc'
-            }
+                shape: 'arc',
+                borderWidth: 0 // remove out border
+            },
         },
 
         tooltip: {
@@ -96,34 +99,39 @@ function createGaugeBar(obj) {
 
         chart: {
             type: 'bar',
-            height: 80,
-            width: 400,
+            height: 90,
+            width: 390,
             spacing: [0, 0, 0, 0],
             margin: [0, 0, 0, 0]
         },
 
         title: {
             align: 'left',
-            text: gaugeBarTitle,
             margin: 0,
-            style: { fontSize: "1rem" }
+            style: { fontSize: "1rem" },
+            useHTML: true,
+            text: '<div class="nps-bar-title">' + gaugeBarTitle + '</div>' // style the title
         },
 
         plotOptions: {
             series: {
                 stacking: 'normal',
-                pointWidth: 30,
+                pointWidth: 35,
+                events: { // Disable the click event of legend
+                    legendItemClick: function (e) {
+                        e.preventDefault();
+                    }
+                }
             },
             bar: {
                 dataLabels: {
-                    enabled: true,
-                    //format: '{y} %',
+                    enabled: true,                    
                     style: {
-                        fontWeight: 'bold'
-                    },
-                    formatter: function () {
-                        return Highcharts.numberFormat(this.y, 0) + ' %';
-                    }
+                        textOutline: 'none' // remove text stroke
+                    },                   
+                    useHTML: true,
+                    format:'<div class="nps-bar-value">{y} %</div>'
+                    
                 },
             }
         },
@@ -146,7 +154,6 @@ function createGaugeBar(obj) {
             gridLineWidth: 0,
             visible: false,
             reversed: true,
-
         },
 
         series: [
@@ -182,16 +189,15 @@ function createGaugeBar(obj) {
         },
 
         legend: {
-            symbolHeight: 10,
-            symbolWidth: 10,
+            symbolHeight: 12,
+            symbolWidth: 12,
             symbolRadius: 0,
-            align: 'left',
-            itemStyle: {
-                "color": legendColor
-            },
+            align: 'left',           
             itemDistance: 10,
             margin: 10,
-            padding: 0
+            padding: 0,
+            useHTML: true,
+            labelFormat: '<div class="nps-bar-legend-label">{name}</div>'            
         },
 
     });

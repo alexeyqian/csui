@@ -2,7 +2,7 @@
 const barColor = '#7084E3';
 const barBackgroundColor = '#F2F3F5';
 const tooltipColor = '#EEE';
-const tooltipBackgroundColor = 'black';
+const tooltipBackgroundColor = "rgba(0, 0, 0, 1)";
 const legendColor = "#605E5C";
 
 var ChoiceChartConfig = {    

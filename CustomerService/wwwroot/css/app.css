@@ -8,7 +8,7 @@
 }
 
 .highchart-question-title {
-    padding: 1rem;   
+    padding: 1rem;
     color: rgb(50, 49, 48);
     border-bottom: 1px solid rgb(237, 235, 233);
 }
@@ -24,7 +24,7 @@
 .highchart-left-part {
 }
 
-.highchart-right-part {       
+.highchart-right-part {
     margin: auto 0px;
 }
 
@@ -52,29 +52,65 @@
     flex-direction: column;
 }
 
-.tooltip-value{
-    font-weight:bold;
+.tooltip-value {
+    font-weight: bold;
     font-size: 1.1rem;
 }
 
-.tooltip-response-count{
-    display:block;
+.tooltip-response-count {
+    display: block;
 }
 
-.nps-value-container {
+/********** NPS CHART ****************/
+.nps-gauge-value-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.nps-value {
-    font-size: 1.5rem;
-}
-.nps-text {
-    font-size: 0.8rem;
-    color: #605E5C
+
+.nps-gauge-value {
+    font-family: "Bahnschrift";
+    font-size: 28px;
+    line-height: 40px;
+    color: #323130;
 }
 
+.nps-gauge-text {
+    font-family: "Segoe UI";
+    font-size: 12px;
+    line-height: 16px;
+    color: #605E5C;
+}
+
+.nps-gauge-y-label {
+    font-family: "Bahnschrift";
+    font-size: 14px;
+    line-height: 16px;
+    color: #605E5C;
+}
+
+.nps-bar-title {
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    line-height: 20px;
+    color: #323130;
+}
+.nps-bar-value{
+    font-family: "Segoe UI";
+    font-size: 14px;
+    line-height: 16px;
+    color: white;
+}
+
+.nps-bar-legend-label {
+    font-family: "Segoe UI";
+    font-size: 12px;
+    line-height: 16px;
+    color: #605E5C;
+}
+
+/********** TEXT RESPONSE ****************/
 .text-response-component {
     font-family: Segoe UI;
     color: #323130;
@@ -123,4 +159,3 @@
     max-width: 200px;
     text-align: right;
 }
-
