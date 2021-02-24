@@ -91,4 +91,14 @@ var LikertChartConfig = {
     optionColors: ["#4190FF", "#8D67C2", "#1A9EAD", "#1D2BA7", "#F736AD", "#632F12", "#E86B54",
         "#6C179A", "#7084E3", "#107C10", "#D13438", "#000000"],
 
+    barNumberThreshold: 10,
+    // extra space for axis lable, title or legend
+    getChartHeight: function (barCount, extraSpace) {
+        let barHeight = 20; // always 20px
+        let barGap = 28; // always 28px
+        let maxHeight = this.barNumberThreshold * (barHeight + barGap) + extraSpace;
+
+        let height = barCount * (barHeight + barGap) + extraSpace;
+        return height > maxHeight ? maxHeight : height;
+    },
 };
