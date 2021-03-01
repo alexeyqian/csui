@@ -4,6 +4,7 @@ function createChoiceChart(obj) {
     Highcharts.chart(obj.container, {
         chart: {
             type: 'bar',
+            width: 500,
             height: ChoiceChartConfig.getChartHeight(obj.categories.length, 25),
         },
 

@@ -1,4 +1,4 @@
-﻿
+﻿// NEW: NOT SYNCED
 function createLikertChart(obj) {
 
     Highcharts.chart(obj.container, {

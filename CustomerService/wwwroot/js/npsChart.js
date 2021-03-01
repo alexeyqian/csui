@@ -37,6 +37,7 @@
             ],            
             lineWidth: 0,
             tickWidth: 0,
+            minorTickWidth: 0, // Fix the tick issue
             minorTickInterval: 0,
             tickAmount: 2,
             labels: {               
@@ -72,6 +73,7 @@
             borderWidth: 0,
             style: {
                 "color": tooltipColor,
+                "backgroundColor": tooltipBackgroundColor
             },
             formatter: function () { return sharedChartConfig.tooltip('Score', this.y, 18); } 
         },
@@ -175,12 +177,9 @@ function createGaugeBar(obj) {
         },
 
         tooltip: {
-            followPointer: false,
+            useHTML: true,
+            borderWidth: 0, 
             backgroundColor: tooltipBackgroundColor,
-            borderWidth: 0,
-            style: {
-                "color": tooltipColor,
-            },
             formatter: function () { return sharedChartConfig.tooltip(this.x, this.y, 18); } 
         },
 
